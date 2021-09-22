@@ -1,4 +1,6 @@
 import random
+from itertools import count
+from itertools import cycle
 from functools import reduce
 
 # 1 функция расчета заработной платы сотрудника -------------------------------------------------------
@@ -55,10 +57,21 @@ print(f'Вывод суммы: {reduce(lambda x, y: x + y, myList)}')
 
 # 6  Реализование два скрипта для циклирования списка -----------------------------------------------
 # 6.1 итератор, генерирующий целые числа, начиная с указанного
-from itertools import count
-
+"""
 begin = int(input('Введите с какого числа начинать: '))
 for i in count(begin):
     print('Вывод: ', i)
     if i > 9:
+        break
+"""
+# 6.2 итератор, повторяющий элементы некоторого списка, определенного заранее
+myList = []
+for i in range(5):
+    myList.append(random.randint(0, 15))
+print(myList)
+check = 0
+for i in cycle(myList):
+    check += 1
+    print(i)
+    if check > 20:
         break
