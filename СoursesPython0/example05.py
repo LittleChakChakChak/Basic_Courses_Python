@@ -58,11 +58,28 @@ with open('files/file_5', 'r') as file5:
     for i in summer:
         summ += int(i)
 print(f'Сумма чисел = {summ}')
-"""
+
 # 6 Запись предметов  ------------------------------------------
 
-with open('files/file_6.txt', 'w') as file6:
-    # сделать ввод по циклу
-    # если пробел то отмена
-    # если пробел в занятие то прочерк
-    # по оканчанию сделать список
+with open('files/file_6', 'r') as file6:
+    items = {}
+    for line in file6:
+        key, value = line.split(': ')
+        time = value.split()
+        if time[0] == '—':
+            time1 = 0
+        else:
+            time1 = int(time[0].replace('(л)', ''))
+        if time[1] == '—':
+            time2 = 0
+        else:
+            time2 = int(time[1].replace('(пр)', ''))
+        if time[2] == '—':
+            time3 = 0
+        else:
+            time3 = int(time[2].replace('(лаб)', ''))
+        items[key] = time1 + time2 + time3
+    print(items)
+"""
+
+# 7 Запись предметов  ------------------------------------------
