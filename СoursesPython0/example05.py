@@ -1,5 +1,5 @@
 # 1 заполнить файл текстовым значение ------------------------------------------
-"""
+
 file1 = open("files/file_1", "w")
 while True:
     str = input('Введите что добавить в файл: ')
@@ -8,7 +8,6 @@ while True:
     else:
         break
 file1.close()
-
 
 # 2 прочтение файла (кол-во строк и символов в строке) ------------------------------------------
 
@@ -21,10 +20,9 @@ with open('files/file_2', 'r') as file2:
         sumChar += char
         print(f'В {lines} строке было {char} символов')
 print(f'Всего было: {lines} строк и {sumChar} символов без пробела')
-"""
 
 # 3 прочтение файла (кол-во строк и символов в строке) ------------------------------------------
-"""
+
 with open('files/file_3', 'r') as file3:
     staff = {}
     sumSalary = 0
@@ -36,7 +34,6 @@ with open('files/file_3', 'r') as file3:
         sumSalary += int(value)
     print(f'Средняя зарплата по сотрудникам: {sumSalary / len(staff)}')
     print(f'Список всех сотрудников: {staff}')
-
 
 # 4 перевод текста из файла в другой файл ------------------------------------------
 
@@ -80,6 +77,23 @@ with open('files/file_6', 'r') as file6:
             time3 = int(time[2].replace('(лаб)', ''))
         items[key] = time1 + time2 + time3
     print(items)
-"""
 
 # 7 Запись предметов  ------------------------------------------
+
+with open('files/file_7', 'r') as file7:
+    profit_firm = {}
+    average_profit = {}
+    loss_firm = {}
+    count_average_profit = 0
+    for line in file7:
+        name_firm, form, revenue, costs = line.split()
+        profit = int(revenue) - int(costs)    # получаем прибыль компании
+        if profit >= 0:
+            profit_firm[name_firm] = profit     # список с прибыльными компаниями
+            count_average_profit += profit    # для расчета средней прибыли
+        else:
+            loss_firm[name_firm] = profit   # список с убыточными фирмами
+    average_profit['average_profit'] = count_average_profit / len(profit_firm)    # продолжение среднего подсчета
+    date_firm = [profit_firm,  average_profit, loss_firm]    # подгатавлием json
+    with open('files/file_7_1.txt', 'w') as file7_1:    # записываем json
+        file7_1.write(f'{date_firm}')
