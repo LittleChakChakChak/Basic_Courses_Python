@@ -2,7 +2,7 @@ from time import sleep
 
 
 # 1 Реализовать класс светофор --------------------------------------------
-"""
+
 class TrafficLight:
     __private_color = ["Красный", "Желтый", "Зеленый"]
 
@@ -30,17 +30,16 @@ class Road:
     def __init__(self, length, width):
         self._length = length
         self._width = width
-        self.thickness = 5   # см
-        self.weight = 25    # кг
+        self.thickness = 5  # см
+        self.weight = 25  # кг
 
     def weight_road(self):
         print(f'Масса всего дорожного покрытия: '
-              f'{(self._length * self._width * self.thickness * self.weight)/1000} (т.)')
+              f'{(self._length * self._width * self.thickness * self.weight) / 1000} (т.)')
 
 
 Road = Road(int(input('Введите длину дороги в метрах: ')), int(input('Введите ширину дороги  в метрах: ')))
 Road.weight_road()
-
 
 
 # 3 Реализовать класс догора --------------------------------------------
@@ -70,7 +69,6 @@ print(employee.get_full_name())
 print(employee.position)
 print(employee.get_total_income())
 
-"""
 
 # 4 Реализовать класс автомобиль --------------------------------------------
 
@@ -104,6 +102,7 @@ class TownCar(Car):
                    f'Привышение скорости на {self.speed - 60}'
         else:
             return f'Автомобиль {self.name} едет со скорость : {self.speed}'
+
 
 class SportCar(Car):
     def __init__(self, speed, color, name, is_police):
@@ -157,3 +156,48 @@ print(bmw.turn('Право'))
 print(bmw.show_speed())
 print(f'Автомобиль {bmw.name} принадлежит полиции? {bmw.is_police}')
 print(bmw.stop())
+
+
+# 5 Реализовать класс канцелярская принадлежность --------------------------------------------
+
+class Stationery():
+    def __init__(self, title):
+        self.title = title
+
+    def draw(self):
+        return f'Запуск отрисовки {self.title}'
+
+
+class Pen(Stationery):
+    def __init__(self, title):
+        super().__init__(title)
+
+    def draw(self):
+        return f'Выбрана {self.title}, запуск отриcовки ручкой'
+
+
+class Pencil(Stationery):
+    def __init__(self, title):
+        super().__init__(title)
+
+    def draw(self):
+        return f'Выбрана {self.title}, запуск отриcовки карандашом'
+
+
+class Handle(Stationery):
+    def __init__(self, title):
+        super().__init__(title)
+
+    def draw(self):
+        return f'Выбрана {self.title}, запуск отриcовки маркером'
+
+
+pen = Pen('ручка')
+print(pen.draw())
+print('---------------------------------------------------')
+pencil = Pencil('карандаш')
+print(pencil.draw())
+print('---------------------------------------------------')
+handle = Handle('маркер')
+print(handle.draw())
+print('---------------------------------------------------')
