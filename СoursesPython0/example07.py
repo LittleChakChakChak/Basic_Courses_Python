@@ -1,5 +1,5 @@
 # 1 Реализовать класс матрица --------------------------------------------
-"""
+
 class Matrix:
     def __init__(self, list0, list1):
         self.list0 = list0
@@ -43,10 +43,10 @@ class Clothes:
         self.height = height
 
     def get_square_coat(self):
-        return self.width/6.5 + 0.5
+        return round(self.width/6.5 + 0.5)
 
     def get_square_suit(self):
-        return 2 * self.height + 0.3
+        return round(2 * self.height + 0.3)
 
     @property
     def get_square_sum(self):
@@ -66,7 +66,7 @@ class Suit(Clothes):
         super().__init__(width, height)
 
     def __str__(self):
-        return str(f'Площадь пальто: {self.get_square_coat()}')
+        return str(f'Площадь пальто: {self.get_square_suit()}')
 
 
 coat = Coat(2, 4)
@@ -75,6 +75,49 @@ print(coat)
 print(suit)
 print(coat.get_square_sum)
 print(suit.get_square_sum)
-"""
+
 
 # 3 Реализовать программу работы с органическими клетками, состоящими из ячеек ----------------------------------------
+class Cell:
+    def __init__(self, number_cells):
+        self.number_cells = int(number_cells)
+
+    def __str__(self):
+        return str(f'Результат операции: {self.number_cells * "*"}')
+
+    def __add__(self, other):
+        return Cell(self.number_cells + other.number_cells)
+
+    def __sub__(self, other):
+        if int(self.number_cells - other.number_cells) > 0:
+            return Cell(self.number_cells - other.number_cells)
+        else:
+            return 'Ошибка вычитания'
+
+    def __mul__(self, other):
+        return Cell(self.number_cells * other.number_cells)
+
+    def __truediv__(self, other):
+        if int(other.number_cells) != 0:
+            return Cell(self.number_cells // other.number_cells)
+        else:
+            return f'Ошибка деления, делимое число = 0'
+
+    def make_order(self, cells_in_row):
+        row = ''
+        for i in range(int(self.number_cells / cells_in_row)):
+            row += f'{"*" * cells_in_row} \n'
+        row += f'{"*" * (self.number_cells % cells_in_row)}'
+        return row
+
+
+cell_1 = Cell(20)
+cell_2 = Cell(13)
+print(cell_1)
+print(cell_2)
+print(cell_1 + cell_2)
+print(cell_1 - cell_2)
+print(cell_1 * cell_2)
+print(cell_1 / cell_2)
+print(cell_1.make_order(5))
+print(cell_2.make_order(7))
