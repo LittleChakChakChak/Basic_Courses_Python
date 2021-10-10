@@ -105,10 +105,11 @@ class Cell:
 
     def make_order(self, cells_in_row):
         row = ''
+
         for i in range(int(self.number_cells / cells_in_row)):
             row += f'{"*" * cells_in_row} \n'
         row += f'{"*" * (self.number_cells % cells_in_row)}'
-        return row
+        return f'Результат операции:\n{row}'
 
 
 cell_1 = Cell(20)
