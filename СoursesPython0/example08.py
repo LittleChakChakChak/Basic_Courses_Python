@@ -105,42 +105,91 @@ class OfficeEquipmentWarehouse:
         print(self._warehouses)
 
     def translation(self):
+        flag_name = True
+        flag_quantity = True
         in_our_division = input('В какое подразделение: ')
         name = input('Переводимый товар: ')
-        for products, availability in self._in_price.items():            # пробегаемся по складу нашего подразделения
+        for products in self._warehouses:            # пробегаемся по складу нашего подразделения
             if products == name:                                         # ищем товар
                 quantity = int(input('Кол-во перевода товара: '))
-                if availability >= quantity:                           # проверяем кол-во
-                    self._in_price[name] = self._in_price[name] - quantity
-                    self._time_price[name] = quantity
-                    self._warehouses[in_our_division] = self._time_price
-        print(f'Склад списания: {self._warehouses[self._our_division]}')
-        print(f'Склад перевода: {self._warehouses[in_our_division]}')
+                flag_name = False
+                if self._warehouses[products[name]] >= quantity:                           # проверяем кол-во
+                    self._warehouses[products[name]].update({name: quantity})
+                    self._warehouses.update({in_our_division: self._time_price.update({name: quantity})})
+                    flag_quantity = False
+        if flag_name:
+            return 'Не найдено подразделение'
+        elif flag_quantity:
+            return 'На складе нет такого количества'
+        else:
+            print(f'Склад списания: {self._warehouses[self._our_division]}')
+            print(f'Склад перевода: {self._warehouses[in_our_division]}')
 
 
 class EquipmentWarehouse:
-    def __init__(self, name, color, connection_type, price):
+    def __init__(self, name, connection_type, price):
         self.name = name
-        self.color = color
         self.connection_type = connection_type
         self.price = price
 
 
 class Printer(EquipmentWarehouse):
-    def __init__(self, color_printing, print_speed, printer_type):
+    def __init__(self, color_printing, print_speed, printer_type, name, connection_type, price):
         self.color_printing = color_printing
         self.print_speed = print_speed
         self.printer_type = printer_type
+        super().__init__(name, connection_type, price)
+
+    def __str__(self):
+        return f'Вы ввели устройство: \n' \
+               f'Название устройства - {self.name} \n' \
+               f'Подключение устройства - {self.connection_type} \n' \
+               f'Цена - {self.price} руб.\n' \
+               f'Цвет печати - {self.color_printing} \n' \
+               f'Скорость печати - {self.print_speed} сек.\n' \
+               f'Тип принтера - {self.printer_type} \n'
+
 
 class Scanner(EquipmentWarehouse):
-    def __init__(self, scanner_speed, scanner_size):
+    def __init__(self, scanner_speed, scanner_size, name, connection_type, price):
         self.scanner_speed = scanner_speed
         self.scanner_size = scanner_size
+        super().__init__(name, connection_type, price)
 
-class Xerox(Printer, Scanner):
-    def __init__(self, size):
+    def __str__(self):
+        return f'Вы ввели устройство: \n' \
+               f'Название устройства - {self.name} \n' \
+               f'Подключение устройства - {self.connection_type} \n' \
+               f'Цена - {self.price} руб.\n' \
+               f'Скорость сканеровки - {self.scanner_speed} сек.\n' \
+               f'Ширина сканера - {self.scanner_size} см * см\n'
+
+
+class Xerox(EquipmentWarehouse):
+    def __init__(self, size, name, connection_type, price):
         self.size = size
+        super().__init__(name, connection_type, price)
 
-test = OfficeEquipmentWarehouse('Москва')
-print(test.acceptance())
-print(test.translation())
+    def __str__(self):
+        return f'Вы ввели устройство: \n' \
+               f'Название устройства - {self.name} \n' \
+               f'Подключение устройства - {self.connection_type} \n' \
+               f'Цена - {self.price} руб.\n' \
+               f'Размер - {self.size} см * см\n'
+
+
+printer_1 = Printer('black', 5, 'лазерный', 'HP', 'bluetooth', 15000)
+print(printer_1)
+print('--------------------------------------------------------')
+
+scanner_1 = Scanner(4, '60 * 25', 'Samsung', 'USB', 10000)
+print(scanner_1)
+print('--------------------------------------------------------')
+
+xerox_1 = Xerox('5000 * 4500', 'Xerox', 'wi-fi', 55000)
+print(xerox_1)
+print('--------------------------------------------------------')
+
+my_warehouse = OfficeEquipmentWarehouse('Москва')
+print(my_warehouse.acceptance())
+print(my_warehouse.translation())
