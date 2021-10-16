@@ -89,8 +89,7 @@ class OfficeEquipmentWarehouse:
     def __init__(self, our_division):
         self._our_division = our_division
 
-    def acceptance(self):
-        nl = '\n'
+    def acceptance(self):                                                               # Пополняем наш склад
         while True:
             name = input('Введите название устройства: ')
             if name != 'стоп':
@@ -104,21 +103,25 @@ class OfficeEquipmentWarehouse:
         self._warehouses[self._our_division] = self._in_price
         print(self._warehouses)
 
-    def translation(self):
+    def translation(self):                                              # Перевод товара на другой склад
         flag_name = True
         flag_quantity = True
         in_our_division = input('В какое подразделение: ')
         name = input('Переводимый товар: ')
-        for products in self._warehouses:            # пробегаемся по складу нашего подразделения
+        for products in self._warehouses[self._our_division]:            # пробегаемся по складу нашего подразделения
             if products == name:                                         # ищем товар
                 quantity = int(input('Кол-во перевода товара: '))
                 flag_name = False
-                if self._warehouses[products[name]] >= quantity:                           # проверяем кол-во
-                    self._warehouses[products[name]].update({name: quantity})
-                    self._warehouses.update({in_our_division: self._time_price.update({name: quantity})})
+                our_quantity = (self._warehouses[self._our_division])[name]   # смотрим количество в нашем подразделении
+                if our_quantity >= quantity:                                    # проверяем кол-во
+                    # списываем с нашего подразделения
+                    self._warehouses[self._our_division].update({name: our_quantity - quantity})
+                    # добавляем в новое подразделение
+                    self._time_price[name] = quantity
+                    self._warehouses.update({in_our_division: self._time_price})
                     flag_quantity = False
         if flag_name:
-            return 'Не найдено подразделение'
+            return 'Не найден товар'
         elif flag_quantity:
             return 'На складе нет такого количества'
         else:
@@ -191,5 +194,5 @@ print(xerox_1)
 print('--------------------------------------------------------')
 
 my_warehouse = OfficeEquipmentWarehouse('Москва')
-print(my_warehouse.acceptance())
-print(my_warehouse.translation())
+print(my_warehouse.acceptance())        # Пополняем наш склад
+print(my_warehouse.translation())       # Перевод товара на другой склад
