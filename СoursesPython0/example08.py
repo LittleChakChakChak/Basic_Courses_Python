@@ -1,7 +1,7 @@
 # 1 Реализовать класс «Дата»,
 # функция-конструктор которого должна принимать дату
 # в виде строки формата «день-месяц-год» --------------------------------------------
-"""
+
 class Date:
     def __init__(self, day_month_year):
         self.day_month_year = day_month_year
@@ -78,9 +78,9 @@ class Checking_numbers:
 
 my_list = Checking_numbers()
 print(my_list.checking())
-"""
 
-# 4-5-6 Создание класса ортехники --------------------------------------------
+
+# 4-5-6 Создание проект "Склад ортехники" --------------------------------------------
 class OfficeEquipmentWarehouse:
     _warehouses = {}
     _in_price = {}
@@ -196,3 +196,31 @@ print('--------------------------------------------------------')
 my_warehouse = OfficeEquipmentWarehouse('Москва')
 print(my_warehouse.acceptance())        # Пополняем наш склад
 print(my_warehouse.translation())       # Перевод товара на другой склад
+
+
+# 7 Создание проект Операции с комплексными числами --------------------------------------------
+class ComplexNumber:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+
+    def __add__(self, other):
+        # (a + b * i) + (c + d * i) = (a + c) + (b + d) * i
+        return f' Вывод суммы: \n' \
+               f'z = {self.a  + other.a} + {self.b + other.b} * i'
+
+    def __mul__(self, other):
+        # (a + b * i) * (c + d * i) = (a * c − b * d) + (a * d + b * c) * i
+        return f' Вывод произедения: \n' \
+               f'z = {self.a * other.a - self.b * other.b} + {self.a * other.b + self.b * other.a} * i'
+
+    def __str__(self):
+        return f'{self.a} + {self.b} * i'
+
+
+z1 = ComplexNumber(2, -5)
+z2 = ComplexNumber(4, 3)
+print(z1)
+print(z2)
+print(z1 + z2)
+print(z1 * z2)
