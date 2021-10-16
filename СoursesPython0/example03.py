@@ -87,12 +87,12 @@ sumer()
 # 6  Первую букву слова изменять на заглавную  ----------------------------------------------
 
 def int_func(offer):
-    newWords = []
+    new_words = []
     words = offer.split()
     for word in words:
-        newWord = word.replace(word[0], word[0].upper(), 1)
-        newWords.append(newWord)
-    return newWords
+        new_word = word.replace(word[0], word[0].upper(), 1)
+        new_words.append(new_word)
+    return new_words
 
 
 offer = input('Введите предложение с из маленьких букв: ')

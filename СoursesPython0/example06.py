@@ -72,7 +72,7 @@ print(employee.get_total_income())
 
 # 4 Реализовать класс автомобиль --------------------------------------------
 
-class Car():
+class Car:
     def __init__(self, speed, color, name, is_police):
         self.speed = speed
         self.color = color
@@ -160,7 +160,7 @@ print(bmw.stop())
 
 # 5 Реализовать класс канцелярская принадлежность --------------------------------------------
 
-class Stationery():
+class Stationery:
     def __init__(self, title):
         self.title = title
 

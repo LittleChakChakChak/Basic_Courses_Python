@@ -13,8 +13,8 @@ class Matrix:
 
     def __add__(self):
         my_math = [[0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0]]
+                    [0, 0, 0],
+                    [0, 0, 0]]
         for i in range(len(self.list0)):
             for j in range(len(self.list1[i])):
                 my_math[i][j] = self.list0[i][j] + self.list1[i][j]

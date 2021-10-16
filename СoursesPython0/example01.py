@@ -26,22 +26,22 @@ r = max(ls)
 print(r)
 
 # 5  Выручки и издержки   -------------------------------------------
-Revenue = int(input('Введите выручку фирмы: '))
-Costs = int(input('Введите издержки фирмы: '))
-if Revenue > Costs:
-    Profit = Revenue - Costs
-    print(f'Фирма в прибыле! Прибыль составляет {Profit}')
-    print(f'Рентабельность выручки = {Profit/Revenue*100}%')
-    NumberOfEmployees = int(input('Введите кол-во сотрудников: '))
-    print(f'Прибыль фирмы с расчетом на одного сотрудника = {Profit / NumberOfEmployees}')
+revenue = int(input('Введите выручку фирмы: '))
+costs = int(input('Введите издержки фирмы: '))
+if revenue > costs:
+    profit = revenue - costs
+    print(f'Фирма в прибыле! Прибыль составляет {profit}')
+    print(f'Рентабельность выручки = {profit/revenue*100}%')
+    number_of_employees = int(input('Введите кол-во сотрудников: '))
+    print(f'Прибыль фирмы с расчетом на одного сотрудника = {profit / number_of_employees}')
 else:
     print('Фирма в убытке!')
 
 # 6  Спортцмен и пробежки   -------------------------------------------
-km = int(input('Сколько в первый день пробежал спротцмен: '))
+km = int(input('Сколько в первый день пробежал спротсмен: '))
 purpose = int(input('Цель в километрах: '))
 day = 1
 while km <= purpose:
     km = km + (km * 0.1)
     day = day + 1
-print(f'Спортцмену нужно бегать {day} дней, что бы достичь цели в {purpose} км')
+print(f'Спортсмену нужно бегать {day} дней, что бы достичь цели в {purpose} км')

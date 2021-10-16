@@ -13,13 +13,13 @@ file1.close()
 
 with open('files/file_2', 'r') as file2:
     lines = 0
-    sumChar = 0
+    sum_char = 0
     for line in file2:
         lines += 1
         char = len(line) - 1
-        sumChar += char
+        sum_char += char
         print(f'В {lines} строке было {char} символов')
-print(f'Всего было: {lines} строк и {sumChar} символов без пробела')
+print(f'Всего было: {lines} строк и {sum_char} символов без пробела')
 
 # 3 прочтение файла (кол-во строк и символов в строке) ------------------------------------------
 

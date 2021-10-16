@@ -8,7 +8,6 @@ class Date:
 
     @classmethod
     def extract(cls, day_month_year):
-        my_date = []
         my_date = day_month_year.split('-')
         return f'День: {int(my_date[0])}, Месяц: {int(my_date[1])}, Год: {int(my_date[2])}'
 
@@ -21,12 +20,13 @@ class Date:
                 else:
                     return 'Неправильно введен год'
             else:
-               return 'Неправильно введен месяц'
+                return 'Неправильно введен месяц'
         else:
             return 'Неправильно введен день'
 
     def __str__(self):
         return self.extract(self.day_month_year)
+
 
 date = Date('10-10-2021')
 print(date.extract('10-11-2021'))
@@ -57,7 +57,7 @@ print(my_division.divisor_zero(2, 2))
 # 3 Создайте собственный класс-исключение,
 # который должен проверять содержимое списка на наличие только чисел. --------------------------------------------
 
-class Checking_numbers:
+class CheckingNumbers:
     def __init__(self):
         self.list_numbers = []
 
@@ -76,7 +76,8 @@ class Checking_numbers:
                     self.list_numbers.append(int(value_str))
                     print(f'Ваш список: {self.list_numbers}')
 
-my_list = Checking_numbers()
+
+my_list = CheckingNumbers()
 print(my_list.checking())
 
 
@@ -89,7 +90,7 @@ class OfficeEquipmentWarehouse:
     def __init__(self, our_division):
         self._our_division = our_division
 
-    def acceptance(self):                                                               # Пополняем наш склад
+    def acceptance(self):  # Пополняем наш склад
         while True:
             name = input('Введите название устройства: ')
             if name != 'стоп':
@@ -103,17 +104,17 @@ class OfficeEquipmentWarehouse:
         self._warehouses[self._our_division] = self._in_price
         print(self._warehouses)
 
-    def translation(self):                                              # Перевод товара на другой склад
+    def translation(self):  # Перевод товара на другой склад
         flag_name = True
         flag_quantity = True
         in_our_division = input('В какое подразделение: ')
         name = input('Переводимый товар: ')
-        for products in self._warehouses[self._our_division]:            # пробегаемся по складу нашего подразделения
-            if products == name:                                         # ищем товар
+        for products in self._warehouses[self._our_division]:  # пробегаемся по складу нашего подразделения
+            if products == name:  # ищем товар
                 quantity = int(input('Кол-во перевода товара: '))
                 flag_name = False
-                our_quantity = (self._warehouses[self._our_division])[name]   # смотрим количество в нашем подразделении
-                if our_quantity >= quantity:                                    # проверяем кол-во
+                our_quantity = (self._warehouses[self._our_division])[name]  # смотрим количество в нашем подразделении
+                if our_quantity >= quantity:  # проверяем кол-во
                     # списываем с нашего подразделения
                     self._warehouses[self._our_division].update({name: our_quantity - quantity})
                     # добавляем в новое подразделение
@@ -194,8 +195,8 @@ print(xerox_1)
 print('--------------------------------------------------------')
 
 my_warehouse = OfficeEquipmentWarehouse('Москва')
-print(my_warehouse.acceptance())        # Пополняем наш склад
-print(my_warehouse.translation())       # Перевод товара на другой склад
+print(my_warehouse.acceptance())  # Пополняем наш склад
+print(my_warehouse.translation())  # Перевод товара на другой склад
 
 
 # 7 Создание проект Операции с комплексными числами --------------------------------------------
@@ -204,12 +205,12 @@ class ComplexNumber:
         self.a = a
         self.b = b
 
-    def __add__(self, other):
+    def __add__(self, other):  # сложение
         # (a + b * i) + (c + d * i) = (a + c) + (b + d) * i
         return f' Вывод суммы: \n' \
-               f'z = {self.a  + other.a} + {self.b + other.b} * i'
+               f'z = {self.a + other.a} + {self.b + other.b} * i'
 
-    def __mul__(self, other):
+    def __mul__(self, other):  # умножение
         # (a + b * i) * (c + d * i) = (a * c − b * d) + (a * d + b * c) * i
         return f' Вывод произедения: \n' \
                f'z = {self.a * other.a - self.b * other.b} + {self.a * other.b + self.b * other.a} * i'

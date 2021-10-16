@@ -19,42 +19,42 @@ print(f'Зарплата: {payroll(salary)}')
 
 # 2 Вывод большего элемента в сравнение с предыдущем -----------------------------------------------
 
-def parsing(myArray):
-    newArray = []
-    for i in range(len(myArray)):
+def parsing(my_array):
+    new_array = []
+    for i in range(len(my_array)):
         if i == 0:
             continue
-        elif myArray[i] > myArray[i - 1]:
-            newArray.append(myArray[i])
-    return newArray
+        elif my_array[i] > my_array[i - 1]:
+            new_array.append(my_array[i])
+    return new_array
 
 
-myArray = []
+my_array = []
 i = 0
 while i < 10:
-    myArray.append(random.randint(0, 100))
+    my_array.append(random.randint(0, 100))
     i += 1
-print(f'Массив(список) изначально {myArray}')
-print(f'Вот такой массив(список) получился{parsing(myArray)}')
+print(f'Массив(список) изначально {my_array}')
+print(f'Вот такой массив(список) получился{parsing(my_array)}')
 
 # 3  Для чисел от 20 до 240 найти кратные 20 или 21 одной строкой -----------------------------------------------
 
 print(f'{[i for i in range(20, 241) if i % 20 == 0 or i % 21 == 0]}')
 
 # 4 Список без повторений  -----------------------------------------------
-myList = []
+my_list = []
 for i in range(10):
-    myList.append(random.randint(0, 100))
-print(f'Список изначально: {myList}')
-print(f'Список без повторений: {set(myList)}')
+    my_list.append(random.randint(0, 100))
+print(f'Список изначально: {my_list}')
+print(f'Список без повторений: {set(my_list)}')
 
 # 5 Список без повторений  -----------------------------------------------
 
-myList = []
+my_list = []
 for i in range(10):
-    myList.append(random.randrange(99, 1001, 2))
-print(f'Вывод списка: {myList}')
-print(f'Вывод суммы: {reduce(lambda x, y: x + y, myList)}')
+    my_list.append(random.randrange(99, 1001, 2))
+print(f'Вывод списка: {my_list}')
+print(f'Вывод суммы: {reduce(lambda x, y: x + y, my_list)}')
 
 # 6  Реализование два скрипта для циклирования списка -----------------------------------------------
 # 6.1 итератор, генерирующий целые числа, начиная с указанного
@@ -66,12 +66,12 @@ for i in count(begin):
         break
 
 # 6.2 итератор, повторяющий элементы некоторого списка, определенного заранее
-myList = []
+my_list = []
 for i in range(5):
-    myList.append(random.randint(0, 15))
-print(myList)
+    my_list.append(random.randint(0, 15))
+print(my_list)
 check = 0
-for i in cycle(myList):
+for i in cycle(my_list):
     check += 1
     print(i)
     if check > 20:
